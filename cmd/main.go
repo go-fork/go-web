@@ -31,7 +31,7 @@ func main() {
 	// Get port from environment or use default
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "7666"
 	}
 
 	fmt.Printf("🚀 Go Fork Package Registry starting on port %s\n", port)

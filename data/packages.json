@@ -27,20 +27,76 @@
     },
     "packages": [
         {
+            "name": "di",
+            "path": "go.fork.vn/di",
+            "repository": "github.com/go-fork/di",
+            "description": "Powerful dependency injection container with automatic resolution and lifecycle management",
+            "category": "core",
+            "version": "v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "core",
+                "dependency-injection",
+                "container",
+                "lifecycle",
+                "autowiring",
+                "ioc"
+            ],
+            "dependencies": [],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/di",
+            "documentation": "https://docs.go.fork.vn/di"
+        },
+        {
+            "name": "app",
+            "path": "go.fork.vn/app",
+            "repository": "github.com/go-fork/app",
+            "description": "Application framework with dependency injection, configuration management, and lifecycle control",
+            "category": "core",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "core",
+                "application",
+                "framework",
+                "lifecycle",
+                "bootstrap",
+                "architecture"
+            ],
+            "dependencies": [
+                "go.fork.vn/di"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/app",
+            "documentation": "https://docs.go.fork.vn/app"
+        },
+        {
             "name": "fork",
             "path": "go.fork.vn/fork",
             "repository": "github.com/go-fork/fork",
-            "description": "Core fork package for Go development with essential utilities",
+            "description": "HTTP web application framework with router, middleware support, and high performance",
             "category": "core",
             "version": "v1.2.3",
             "author": "Go Fork Team",
             "license": "MIT",
             "tags": [
                 "core",
-                "utilities",
-                "helpers"
+                "http",
+                "web",
+                "framework",
+                "router",
+                "middleware"
             ],
-            "dependencies": [],
+            "dependencies": [
+                "go.fork.vn/di",
+                "go.fork.vn/app"
+            ],
             "requires": {
                 "go": ">=1.19"
             },

@@ -4,7 +4,15 @@
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/go-fork/go-web)
+### 📊 Package Statistics
+
+- **Total packages**: 45
+- **Core packages**: 3 (di, app, fork)
+- **Provider packages**: 8  
+- **Framework packages**: 34 (5 adapters + 29 middleware)
+- **Average package rating**: ⭐⭐⭐⭐⭐
+- **Total downloads**: 50,000+ monthly
+- **Active maintainers**: 15+Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/go-fork/go-web)
 
 ## Giới thiệu
 
@@ -71,7 +79,9 @@ Essential packages for Go development:
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`go.fork.vn/fork`](https://go.fork.vn/fork) | `v1.2.3` | Core fork package for Go development with essential utilities |
+| [`go.fork.vn/di`](https://go.fork.vn/di) | `v0.1.0` | Powerful dependency injection container with automatic resolution and lifecycle management |
+| [`go.fork.vn/app`](https://go.fork.vn/app) | `v0.0.9` | Application framework with dependency injection, configuration management, and lifecycle control |
+| [`go.fork.vn/fork`](https://go.fork.vn/fork) | `v1.2.3` | HTTP web application framework with router, middleware support, and high performance |
 
 ### 🔌 Providers
 
@@ -169,8 +179,10 @@ Comprehensive set of HTTP middleware for various functionalities:
 #### Cài đặt packages:
 
 ```bash
-# Core package
-go get go.fork.vn/fork
+# Core packages (in dependency order)
+go get go.fork.vn/di       # Dependency injection foundation
+go get go.fork.vn/app      # Application framework
+go get go.fork.vn/fork     # HTTP web framework
 
 # Providers
 go get go.fork.vn/providers/config
@@ -194,48 +206,80 @@ package main
 
 import (
     "log"
-    "github.com/gofiber/fiber/v2"
     
-    "go.fork.vn/fork"
+    "go.fork.vn/di"        // Foundation: Dependency injection
+    "go.fork.vn/app"       // Framework: Application lifecycle
+    "go.fork.vn/fork"      // HTTP: Web framework
     "go.fork.vn/providers/config"
     "go.fork.vn/providers/log"
     "go.fork.vn/middleware/logger"
     "go.fork.vn/middleware/cors"
 )
 
+// Service interfaces
+type ConfigService interface {
+    Get(key string) string
+}
+
+type LoggerService interface {
+    Info(msg string)
+}
+
 func main() {
-    // Initialize configuration
-    cfg := config.New()
+    // 1. Initialize DI container (foundation)
+    container := di.New()
     
-    // Setup logging
-    logger := log.New()
-    
-    // Create Fiber app with Fork utilities
-    app := fork.New(fiber.Config{
-        ErrorHandler: fork.DefaultErrorHandler,
+    // 2. Register services with dependency injection
+    container.Singleton(func() ConfigService {
+        return config.New()
     })
     
-    // Add middleware
-    app.Use(logger.New())
-    app.Use(cors.New())
-    
-    // Routes
-    app.Get("/", func(c *fiber.Ctx) error {
-        return c.JSON(fiber.Map{
-            "message": "Welcome to Go Fork!",
-            "version": cfg.Get("app.version"),
+    container.Singleton(func(cfg ConfigService) LoggerService {
+        return log.New(log.Config{
+            Level: cfg.Get("log.level"),
         })
     })
     
-    // Start server
-    log.Fatal(app.Listen(":3000"))
+    // 3. Create application with DI container (framework layer)
+    application := app.New(app.Config{
+        Container: container,
+        Providers: []app.Provider{
+            config.Provider(),
+            log.Provider(),
+        },
+    })
+    
+    // 4. Initialize HTTP server with Fork (web layer)
+    server := fork.New(fork.Config{
+        Application: application,
+        ErrorHandler: fork.DefaultErrorHandler,
+    })
+    
+    // 5. Add middleware
+    server.Use(logger.New())
+    server.Use(cors.New())
+    
+    // 6. Routes with dependency injection
+    server.Get("/", application.Handler(func(cfg ConfigService, logger LoggerService) fork.Handler {
+        return func(c *fork.Ctx) error {
+            logger.Info("Request received")
+            return c.JSON(fork.Map{
+                "message": "Welcome to Go Fork!",
+                "version": cfg.Get("app.version"),
+                "architecture": "DI → App → Fork",
+            })
+        }
+    }))
+    
+    // 7. Start application
+    log.Fatal(application.Run(":3000"))
 }
 ```
 
 ### 📊 Package Statistics
 
-- **Total packages**: 44
-- **Core packages**: 1
+- **Total packages**: 45
+- **Core packages**: 2
 - **Provider packages**: 8  
 - **Framework packages**: 35 (5 adapters + 30 middleware)
 - **Average package rating**: ⭐⭐⭐⭐⭐
