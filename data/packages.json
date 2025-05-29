@@ -73,19 +73,44 @@
             "documentation": "https://docs.go.fork.vn/providers/config"
         },
         {
-            "name": "http",
-            "path": "go.fork.vn/http",
-            "repository": "github.com/go-fork/http",
-            "description": "Enhanced HTTP client with retry, middleware, and timeout support",
-            "category": "utilities",
-            "version": "v1.5.2",
+            "name": "adapter/fasthttp",
+            "path": "go.fork.vn/adapter/fasthttp",
+            "repository": "github.com/go-fork/adapter/fasthttp",
+            "description": "FastHTTP adapter for high-performance HTTP server implementation",
+            "category": "frameworks",
+            "version": "v0.0.9",
             "author": "Go Fork Team",
             "license": "MIT",
             "tags": [
+                "adapter",
+                "fasthttp",
+                "performance",
+                "server"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19",
+                "github.com/valyala/fasthttp": "v1.47.0"
+            },
+            "homepage": "https://go.fork.vn/adapter/fasthttp",
+            "documentation": "https://docs.go.fork.vn/adapter/fasthttp"
+        },
+        {
+            "name": "adapter/http",
+            "path": "go.fork.vn/adapter/http",
+            "repository": "github.com/go-fork/adapter/http",
+            "description": "Standard HTTP adapter for Go's built-in net/http package",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "adapter",
                 "http",
-                "client",
-                "middleware",
-                "retry"
+                "standard",
+                "net/http"
             ],
             "dependencies": [
                 "go.fork.vn/fork"
@@ -93,62 +118,996 @@
             "requires": {
                 "go": ">=1.19"
             },
-            "homepage": "https://go.fork.vn/http",
-            "documentation": "https://docs.go.fork.vn/http"
+            "homepage": "https://go.fork.vn/adapter/http",
+            "documentation": "https://docs.go.fork.vn/adapter/http"
         },
         {
-            "name": "web",
-            "path": "go.fork.vn/web",
-            "repository": "github.com/go-fork/web",
-            "description": "Lightweight web framework with routing, middleware, and templating",
+            "name": "adapter/http2",
+            "path": "go.fork.vn/adapter/http2",
+            "repository": "github.com/go-fork/adapter/http2",
+            "description": "HTTP/2 adapter with server push and multiplexing support",
             "category": "frameworks",
-            "version": "v3.0.1",
+            "version": "v0.0.9",
             "author": "Go Fork Team",
             "license": "MIT",
             "tags": [
-                "web",
-                "framework",
-                "router",
-                "middleware"
+                "adapter",
+                "http2",
+                "server-push",
+                "multiplexing"
             ],
             "dependencies": [
-                "go.fork.vn/fork",
-                "go.fork.vn/http"
+                "go.fork.vn/fork"
             ],
             "requires": {
-                "go": ">=1.20",
-                "github.com/gorilla/mux": "v1.8.0"
+                "go": ">=1.19"
             },
-            "homepage": "https://go.fork.vn/web",
-            "documentation": "https://docs.go.fork.vn/web"
+            "homepage": "https://go.fork.vn/adapter/http2",
+            "documentation": "https://docs.go.fork.vn/adapter/http2"
         },
         {
-            "name": "providers/database",
-            "path": "go.fork.vn/providers/database",
-            "repository": "github.com/go-fork/providers/database",
-            "description": "Database abstraction layer with PostgreSQL, MySQL, and SQLite support",
-            "category": "providers",
-            "version": "v2.3.0",
+            "name": "adapter/quic",
+            "path": "go.fork.vn/adapter/quic",
+            "repository": "github.com/go-fork/adapter/quic",
+            "description": "QUIC adapter for HTTP/3 transport with improved performance",
+            "category": "frameworks",
+            "version": "v0.0.9",
             "author": "Go Fork Team",
             "license": "MIT",
             "tags": [
-                "database",
-                "postgresql",
-                "mysql",
-                "sqlite",
-                "orm"
+                "adapter",
+                "quic",
+                "http3",
+                "transport"
             ],
             "dependencies": [
-                "go.fork.vn/fork",
-                "go.fork.vn/providers/config"
+                "go.fork.vn/fork"
             ],
             "requires": {
                 "go": ">=1.19",
-                "github.com/lib/pq": "v1.10.9",
-                "github.com/go-sql-driver/mysql": "v1.7.1"
+                "github.com/quic-go/quic-go": "v0.37.0"
             },
-            "homepage": "https://go.fork.vn/providers/database",
-            "documentation": "https://docs.go.fork.vn/providers/database"
+            "homepage": "https://go.fork.vn/adapter/quic",
+            "documentation": "https://docs.go.fork.vn/adapter/quic"
+        },
+        {
+            "name": "adapter/unified",
+            "path": "go.fork.vn/adapter/unified",
+            "repository": "github.com/go-fork/adapter/unified",
+            "description": "Unified adapter that supports multiple HTTP implementations seamlessly",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "adapter",
+                "unified",
+                "multi-protocol",
+                "seamless"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/adapter/unified",
+            "documentation": "https://docs.go.fork.vn/adapter/unified"
+        },
+        {
+            "name": "middleware/basicauth",
+            "path": "go.fork.vn/middleware/basicauth",
+            "repository": "github.com/go-fork/middleware/basicauth",
+            "description": "Basic authentication middleware with customizable validation",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "auth",
+                "basic-auth",
+                "security"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/basicauth",
+            "documentation": "https://docs.go.fork.vn/middleware/basicauth"
+        },
+        {
+            "name": "middleware/bodylimit",
+            "path": "go.fork.vn/middleware/bodylimit",
+            "repository": "github.com/go-fork/middleware/bodylimit",
+            "description": "Request body size limit middleware for security and performance",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "body-limit",
+                "security",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/bodylimit",
+            "documentation": "https://docs.go.fork.vn/middleware/bodylimit"
+        },
+        {
+            "name": "middleware/cache",
+            "path": "go.fork.vn/middleware/cache",
+            "repository": "github.com/go-fork/middleware/cache",
+            "description": "HTTP caching middleware with configurable cache control",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "cache",
+                "performance",
+                "http-cache"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/cache",
+            "documentation": "https://docs.go.fork.vn/middleware/cache"
+        },
+        {
+            "name": "middleware/compression",
+            "path": "go.fork.vn/middleware/compression",
+            "repository": "github.com/go-fork/middleware/compression",
+            "description": "Response compression middleware supporting gzip, deflate, and brotli",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "compression",
+                "gzip",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/compression",
+            "documentation": "https://docs.go.fork.vn/middleware/compression"
+        },
+        {
+            "name": "middleware/cors",
+            "path": "go.fork.vn/middleware/cors",
+            "repository": "github.com/go-fork/middleware/cors",
+            "description": "Cross-Origin Resource Sharing (CORS) middleware with full configuration",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "cors",
+                "cross-origin",
+                "security"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/cors",
+            "documentation": "https://docs.go.fork.vn/middleware/cors"
+        },
+        {
+            "name": "middleware/csrf",
+            "path": "go.fork.vn/middleware/csrf",
+            "repository": "github.com/go-fork/middleware/csrf",
+            "description": "Cross-Site Request Forgery (CSRF) protection middleware",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "csrf",
+                "security",
+                "protection"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/csrf",
+            "documentation": "https://docs.go.fork.vn/middleware/csrf"
+        },
+        {
+            "name": "middleware/earlydata",
+            "path": "go.fork.vn/middleware/earlydata",
+            "repository": "github.com/go-fork/middleware/earlydata",
+            "description": "TLS 1.3 early data middleware for improved performance",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "tls",
+                "early-data",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/earlydata",
+            "documentation": "https://docs.go.fork.vn/middleware/earlydata"
+        },
+        {
+            "name": "middleware/encryptcookie",
+            "path": "go.fork.vn/middleware/encryptcookie",
+            "repository": "github.com/go-fork/middleware/encryptcookie",
+            "description": "Cookie encryption middleware for enhanced security",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "cookie",
+                "encryption",
+                "security"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/encryptcookie",
+            "documentation": "https://docs.go.fork.vn/middleware/encryptcookie"
+        },
+        {
+            "name": "middleware/envvar",
+            "path": "go.fork.vn/middleware/envvar",
+            "repository": "github.com/go-fork/middleware/envvar",
+            "description": "Environment variable injection middleware for request context",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "environment",
+                "variables",
+                "context"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/envvar",
+            "documentation": "https://docs.go.fork.vn/middleware/envvar"
+        },
+        {
+            "name": "middleware/etag",
+            "path": "go.fork.vn/middleware/etag",
+            "repository": "github.com/go-fork/middleware/etag",
+            "description": "ETag generation and validation middleware for caching",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "etag",
+                "caching",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/etag",
+            "documentation": "https://docs.go.fork.vn/middleware/etag"
+        },
+        {
+            "name": "middleware/expvar",
+            "path": "go.fork.vn/middleware/expvar",
+            "repository": "github.com/go-fork/middleware/expvar",
+            "description": "Runtime variables exposure middleware for debugging",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "expvar",
+                "debugging",
+                "monitoring"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/expvar",
+            "documentation": "https://docs.go.fork.vn/middleware/expvar"
+        },
+        {
+            "name": "middleware/favicon",
+            "path": "go.fork.vn/middleware/favicon",
+            "repository": "github.com/go-fork/middleware/favicon",
+            "description": "Favicon serving middleware with caching support",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "favicon",
+                "static",
+                "caching"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/favicon",
+            "documentation": "https://docs.go.fork.vn/middleware/favicon"
+        },
+        {
+            "name": "middleware/filesystem",
+            "path": "go.fork.vn/middleware/filesystem",
+            "repository": "github.com/go-fork/middleware/filesystem",
+            "description": "File system serving middleware with directory browsing",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "filesystem",
+                "static",
+                "files"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/filesystem",
+            "documentation": "https://docs.go.fork.vn/middleware/filesystem"
+        },
+        {
+            "name": "middleware/healthcheck",
+            "path": "go.fork.vn/middleware/healthcheck",
+            "repository": "github.com/go-fork/middleware/healthcheck",
+            "description": "Health check endpoint middleware for monitoring",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "health-check",
+                "monitoring",
+                "endpoint"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/healthcheck",
+            "documentation": "https://docs.go.fork.vn/middleware/healthcheck"
+        },
+        {
+            "name": "middleware/helmet",
+            "path": "go.fork.vn/middleware/helmet",
+            "repository": "github.com/go-fork/middleware/helmet",
+            "description": "Security headers middleware for web application protection",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "security",
+                "headers",
+                "helmet"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/helmet",
+            "documentation": "https://docs.go.fork.vn/middleware/helmet"
+        },
+        {
+            "name": "middleware/idempotency",
+            "path": "go.fork.vn/middleware/idempotency",
+            "repository": "github.com/go-fork/middleware/idempotency",
+            "description": "Idempotency middleware for safe request retries",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "idempotency",
+                "retry",
+                "safety"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/idempotency",
+            "documentation": "https://docs.go.fork.vn/middleware/idempotency"
+        },
+        {
+            "name": "middleware/keyauth",
+            "path": "go.fork.vn/middleware/keyauth",
+            "repository": "github.com/go-fork/middleware/keyauth",
+            "description": "API key authentication middleware with validation",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "auth",
+                "api-key",
+                "security"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/keyauth",
+            "documentation": "https://docs.go.fork.vn/middleware/keyauth"
+        },
+        {
+            "name": "middleware/limiter",
+            "path": "go.fork.vn/middleware/limiter",
+            "repository": "github.com/go-fork/middleware/limiter",
+            "description": "Rate limiting middleware with multiple algorithms",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "rate-limit",
+                "throttling",
+                "security"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/limiter",
+            "documentation": "https://docs.go.fork.vn/middleware/limiter"
+        },
+        {
+            "name": "middleware/logger",
+            "path": "go.fork.vn/middleware/logger",
+            "repository": "github.com/go-fork/middleware/logger",
+            "description": "HTTP request logging middleware with customizable formats",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "logging",
+                "request",
+                "monitoring"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/logger",
+            "documentation": "https://docs.go.fork.vn/middleware/logger"
+        },
+        {
+            "name": "middleware/method",
+            "path": "go.fork.vn/middleware/method",
+            "repository": "github.com/go-fork/middleware/method",
+            "description": "HTTP method override middleware for form-based requests",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "method",
+                "override",
+                "forms"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/method",
+            "documentation": "https://docs.go.fork.vn/middleware/method"
+        },
+        {
+            "name": "middleware/monitor",
+            "path": "go.fork.vn/middleware/monitor",
+            "repository": "github.com/go-fork/middleware/monitor",
+            "description": "Application monitoring middleware with metrics collection",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "monitoring",
+                "metrics",
+                "observability"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/monitor",
+            "documentation": "https://docs.go.fork.vn/middleware/monitor"
+        },
+        {
+            "name": "middleware/pprof",
+            "path": "go.fork.vn/middleware/pprof",
+            "repository": "github.com/go-fork/middleware/pprof",
+            "description": "Go pprof profiling middleware for performance analysis",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "pprof",
+                "profiling",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/pprof",
+            "documentation": "https://docs.go.fork.vn/middleware/pprof"
+        },
+        {
+            "name": "middleware/proxy",
+            "path": "go.fork.vn/middleware/proxy",
+            "repository": "github.com/go-fork/middleware/proxy",
+            "description": "Reverse proxy middleware with load balancing",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "proxy",
+                "reverse-proxy",
+                "load-balancing"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/proxy",
+            "documentation": "https://docs.go.fork.vn/middleware/proxy"
+        },
+        {
+            "name": "middleware/recover",
+            "path": "go.fork.vn/middleware/recover",
+            "repository": "github.com/go-fork/middleware/recover",
+            "description": "Panic recovery middleware for application stability",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "recover",
+                "panic",
+                "stability"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/recover",
+            "documentation": "https://docs.go.fork.vn/middleware/recover"
+        },
+        {
+            "name": "middleware/redirect",
+            "path": "go.fork.vn/middleware/redirect",
+            "repository": "github.com/go-fork/middleware/redirect",
+            "description": "URL redirection middleware with pattern matching",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "redirect",
+                "url",
+                "routing"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/redirect",
+            "documentation": "https://docs.go.fork.vn/middleware/redirect"
+        },
+        {
+            "name": "middleware/requestid",
+            "path": "go.fork.vn/middleware/requestid",
+            "repository": "github.com/go-fork/middleware/requestid",
+            "description": "Request ID generation middleware for tracing",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "request-id",
+                "tracing",
+                "correlation"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/requestid",
+            "documentation": "https://docs.go.fork.vn/middleware/requestid"
+        },
+        {
+            "name": "middleware/rewrite",
+            "path": "go.fork.vn/middleware/rewrite",
+            "repository": "github.com/go-fork/middleware/rewrite",
+            "description": "URL rewriting middleware with regex support",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "rewrite",
+                "url",
+                "regex"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/rewrite",
+            "documentation": "https://docs.go.fork.vn/middleware/rewrite"
+        },
+        {
+            "name": "middleware/session",
+            "path": "go.fork.vn/middleware/session",
+            "repository": "github.com/go-fork/middleware/session",
+            "description": "Session management middleware with multiple storage backends",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "session",
+                "storage",
+                "state"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/session",
+            "documentation": "https://docs.go.fork.vn/middleware/session"
+        },
+        {
+            "name": "middleware/skip",
+            "path": "go.fork.vn/middleware/skip",
+            "repository": "github.com/go-fork/middleware/skip",
+            "description": "Conditional middleware execution with skip logic",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "skip",
+                "conditional",
+                "logic"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/skip",
+            "documentation": "https://docs.go.fork.vn/middleware/skip"
+        },
+        {
+            "name": "middleware/static",
+            "path": "go.fork.vn/middleware/static",
+            "repository": "github.com/go-fork/middleware/static",
+            "description": "Static file serving middleware with caching and compression",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "static",
+                "files",
+                "caching"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/static",
+            "documentation": "https://docs.go.fork.vn/middleware/static"
+        },
+        {
+            "name": "middleware/timeout",
+            "path": "go.fork.vn/middleware/timeout",
+            "repository": "github.com/go-fork/middleware/timeout",
+            "description": "Request timeout middleware for preventing hanging requests",
+            "category": "frameworks",
+            "version": "v0.0.9",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "middleware",
+                "timeout",
+                "request",
+                "performance"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/middleware/timeout",
+            "documentation": "https://docs.go.fork.vn/middleware/timeout"
+        },
+        {
+            "name": "providers/cache",
+            "path": "go.fork.vn/providers/cache",
+            "repository": "github.com/go-fork/providers/cache",
+            "description": "Caching provider with support for in-memory, Redis, and distributed caching",
+            "category": "providers",
+            "version": "cache/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "cache",
+                "redis",
+                "memory",
+                "distributed"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/providers/cache",
+            "documentation": "https://docs.go.fork.vn/providers/cache"
+        },
+        {
+            "name": "providers/log",
+            "path": "go.fork.vn/providers/log",
+            "repository": "github.com/go-fork/providers/log",
+            "description": "Structured logging provider with multiple output formats and levels",
+            "category": "providers",
+            "version": "log/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "logging",
+                "structured",
+                "json",
+                "console"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/providers/log",
+            "documentation": "https://docs.go.fork.vn/providers/log"
+        },
+        {
+            "name": "providers/mailer",
+            "path": "go.fork.vn/providers/mailer",
+            "repository": "github.com/go-fork/providers/mailer",
+            "description": "Email provider with SMTP, templating, and attachment support",
+            "category": "providers",
+            "version": "mailer/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "email",
+                "smtp",
+                "templates",
+                "attachments"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/providers/mailer",
+            "documentation": "https://docs.go.fork.vn/providers/mailer"
+        },
+        {
+            "name": "providers/mongodb",
+            "path": "go.fork.vn/providers/mongodb",
+            "repository": "github.com/go-fork/providers/mongodb",
+            "description": "MongoDB provider with connection pooling and query builder",
+            "category": "providers",
+            "version": "mongodb/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "mongodb",
+                "database",
+                "nosql",
+                "query-builder"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19",
+                "go.mongodb.org/mongo-driver": "v1.11.0"
+            },
+            "homepage": "https://go.fork.vn/providers/mongodb",
+            "documentation": "https://docs.go.fork.vn/providers/mongodb"
+        },
+        {
+            "name": "providers/queue",
+            "path": "go.fork.vn/providers/queue",
+            "repository": "github.com/go-fork/providers/queue",
+            "description": "Message queue provider with Redis, RabbitMQ, and in-memory support",
+            "category": "providers",
+            "version": "queue/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "queue",
+                "messaging",
+                "redis",
+                "rabbitmq",
+                "workers"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/providers/queue",
+            "documentation": "https://docs.go.fork.vn/providers/queue"
+        },
+        {
+            "name": "providers/redis",
+            "path": "go.fork.vn/providers/redis",
+            "repository": "github.com/go-fork/providers/redis",
+            "description": "Redis provider with connection pooling, clustering, and pub/sub support",
+            "category": "providers",
+            "version": "redis/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "redis",
+                "cache",
+                "pubsub",
+                "clustering"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19",
+                "github.com/redis/go-redis/v9": "v9.0.0"
+            },
+            "homepage": "https://go.fork.vn/providers/redis",
+            "documentation": "https://docs.go.fork.vn/providers/redis"
+        },
+        {
+            "name": "providers/scheduler",
+            "path": "go.fork.vn/providers/scheduler",
+            "repository": "github.com/go-fork/providers/scheduler",
+            "description": "Task scheduler provider with cron support and distributed locking",
+            "category": "providers",
+            "version": "scheduler/v0.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "scheduler",
+                "cron",
+                "tasks",
+                "distributed"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/providers/scheduler",
+            "documentation": "https://docs.go.fork.vn/providers/scheduler"
         }
     ]
 }
