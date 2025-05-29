@@ -1,0 +1,154 @@
+{
+    "categories": {
+        "core": {
+            "name": "Core Packages",
+            "description": "Essential packages for Go development",
+            "icon": "🏗️",
+            "color": "#007ACC"
+        },
+        "providers": {
+            "name": "Providers",
+            "description": "Third-party service providers and integrations",
+            "icon": "🔌",
+            "color": "#28A745"
+        },
+        "utilities": {
+            "name": "Utilities",
+            "description": "Helper packages and utilities",
+            "icon": "🛠️",
+            "color": "#FD7E14"
+        },
+        "frameworks": {
+            "name": "Frameworks",
+            "description": "Web frameworks and application scaffolds",
+            "icon": "🚀",
+            "color": "#6F42C1"
+        }
+    },
+    "packages": [
+        {
+            "name": "fork",
+            "path": "go.fork.vn/fork",
+            "repository": "github.com/go-fork/fork",
+            "description": "Core fork package for Go development with essential utilities",
+            "category": "core",
+            "version": "v1.2.3",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "core",
+                "utilities",
+                "helpers"
+            ],
+            "dependencies": [],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/fork",
+            "documentation": "https://docs.go.fork.vn/fork"
+        },
+        {
+            "name": "providers/config",
+            "path": "go.fork.vn/providers/config",
+            "repository": "github.com/go-fork/providers/config",
+            "description": "Configuration provider with support for JSON, YAML, ENV, and remote sources",
+            "category": "providers",
+            "version": "v2.1.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "config",
+                "yaml",
+                "json",
+                "environment"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19",
+                "gopkg.in/yaml.v3": "v3.0.1"
+            },
+            "homepage": "https://go.fork.vn/providers/config",
+            "documentation": "https://docs.go.fork.vn/providers/config"
+        },
+        {
+            "name": "http",
+            "path": "go.fork.vn/http",
+            "repository": "github.com/go-fork/http",
+            "description": "Enhanced HTTP client with retry, middleware, and timeout support",
+            "category": "utilities",
+            "version": "v1.5.2",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "http",
+                "client",
+                "middleware",
+                "retry"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork"
+            ],
+            "requires": {
+                "go": ">=1.19"
+            },
+            "homepage": "https://go.fork.vn/http",
+            "documentation": "https://docs.go.fork.vn/http"
+        },
+        {
+            "name": "web",
+            "path": "go.fork.vn/web",
+            "repository": "github.com/go-fork/web",
+            "description": "Lightweight web framework with routing, middleware, and templating",
+            "category": "frameworks",
+            "version": "v3.0.1",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "web",
+                "framework",
+                "router",
+                "middleware"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork",
+                "go.fork.vn/http"
+            ],
+            "requires": {
+                "go": ">=1.20",
+                "github.com/gorilla/mux": "v1.8.0"
+            },
+            "homepage": "https://go.fork.vn/web",
+            "documentation": "https://docs.go.fork.vn/web"
+        },
+        {
+            "name": "providers/database",
+            "path": "go.fork.vn/providers/database",
+            "repository": "github.com/go-fork/providers/database",
+            "description": "Database abstraction layer with PostgreSQL, MySQL, and SQLite support",
+            "category": "providers",
+            "version": "v2.3.0",
+            "author": "Go Fork Team",
+            "license": "MIT",
+            "tags": [
+                "database",
+                "postgresql",
+                "mysql",
+                "sqlite",
+                "orm"
+            ],
+            "dependencies": [
+                "go.fork.vn/fork",
+                "go.fork.vn/providers/config"
+            ],
+            "requires": {
+                "go": ">=1.19",
+                "github.com/lib/pq": "v1.10.9",
+                "github.com/go-sql-driver/mysql": "v1.7.1"
+            },
+            "homepage": "https://go.fork.vn/providers/database",
+            "documentation": "https://docs.go.fork.vn/providers/database"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{{template "layout.gohtml" .}}
+
+{{define "goget-content"}}
+<div class="go-get-info">
+    <div class="go-get-header">
+        <h2>Go Get - {{.Package.Path}}</h2>
+        <p class="go-get-description">Đang chuyển hướng đến repository</p>
+    </div>
+    
+    <div class="go-get-details">
+        <div class="go-get-command">
+            <h3>📦 Cài đặt package</h3>
+            <div class="install-cmd large">
+                <code>go get {{.Package.Path}}</code>
+                <button class="copy-btn" data-clipboard="go get {{.Package.Path}}">📋 Copy</button>
+            </div>
+        </div>
+        
+        <div class="go-get-repo">
+            <h3>🔗 Repository</h3>
+            <a href="https://{{.Package.Repository}}" class="repo-link" target="_blank">
+                {{.Package.Repository}}
+                <span class="external-icon">↗</span>
+            </a>
+        </div>
+        
+        <div class="go-get-meta">
+            <p>Meta tags được thêm vào để hỗ trợ <code>go get</code>:</p>
+            <pre class="meta-code">
+&lt;meta name="go-import" content="{{.GoGetMeta.Path}} git https://{{.GoGetMeta.Repository}}"&gt;
+&lt;meta name="go-source" content="{{.GoGetMeta.Path}} https://{{.GoGetMeta.Repository}} https://{{.GoGetMeta.Repository}}/tree/main{/dir} https://{{.GoGetMeta.Repository}}/blob/main{/dir}/{file}#L{line}"&gt;
+            </pre>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/{{.Package.Name}}" class="btn btn-primary">Xem chi tiết package</a>
+            <a href="/" class="btn btn-outline">← Quay lại trang chủ</a>
+        </div>
+    </div>
+</div>
+{{end}}

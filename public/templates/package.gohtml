@@ -1,0 +1,127 @@
+{{template "layout.gohtml" .}}
+
+{{define "package-content"}}
+<div class="package-detail">
+    <div class="package-header">
+        <div class="package-main-info">
+            <h2 class="package-path">{{.Package.Path}}</h2>
+            <div class="package-badges">
+                {{if .Package.Version}}<span class="package-version">{{.Package.Version}}</span>{{end}}
+                {{if .Package.Category}}
+                {{with index .Categories .Package.Category}}
+                <span class="package-category" style="background-color: {{.Color}}">
+                    {{.Icon}} {{.Name}}
+                </span>
+                {{end}}
+                {{end}}
+                {{if .Package.License}}<span class="package-license">{{.Package.License}}</span>{{end}}
+            </div>
+            <p class="package-description">{{.Package.Description}}</p>
+            
+            <div class="package-stats">
+                <div class="stat-bubble">
+                    <span class="stat-icon">📦</span>
+                    <span>{{if .Package.Version}}v{{.Package.Version}}{{else}}stable{{end}}</span>
+                </div>
+                <div class="stat-bubble">
+                    <span class="stat-icon">👁️</span>
+                    <span>{{len .Package.Dependencies}} deps</span>
+                </div>
+                <div class="stat-bubble">
+                    <span class="stat-icon">📝</span>
+                    <span>{{if .Package.License}}{{.Package.License}}{{else}}Unknown{{end}}</span>
+                </div>
+                {{if .Package.Author}}
+                <div class="stat-bubble">
+                    <span class="stat-icon">👤</span>
+                    <span>{{.Package.Author}}</span>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+
+    <div class="install-section">
+        <h3>📦 Cài đặt</h3>
+        <div class="install-cmd large">
+            <code>go get {{.Package.Path}}</code>
+            <button class="copy-btn" data-clipboard="go get {{.Package.Path}}">📋 Copy</button>
+        </div>
+    </div>
+
+    <div class="package-info-grid">
+        <div class="info-card">
+            <h3>📋 Thông tin cơ bản</h3>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">Repository:</span>
+                    <span class="info-value">{{.Package.Repository}}</span>
+                </div>
+                {{if .Package.Author}}
+                <div class="info-item">
+                    <span class="info-label">Author:</span>
+                    <span class="info-value">{{.Package.Author}}</span>
+                </div>
+                {{end}}
+                {{if .Package.License}}
+                <div class="info-item">
+                    <span class="info-label">License:</span>
+                    <span class="info-value">{{.Package.License}}</span>
+                </div>
+                {{end}}
+            </div>
+        </div>
+
+        {{if .Package.Tags}}
+        <div class="info-card">
+            <h3>🏷️ Tags</h3>
+            <div class="tags-container">
+                {{range .Package.Tags}}<span class="tag">{{.}}</span>{{end}}
+            </div>
+        </div>
+        {{end}}
+
+        {{if .Package.Dependencies}}
+        <div class="info-card">
+            <h3>📦 Dependencies</h3>
+            <div class="dependencies-list">
+                {{range .Package.Dependencies}}
+                <a href="/{{.}}" class="dependency-link">{{.}}</a>
+                {{end}}
+            </div>
+        </div>
+        {{end}}
+
+        {{if .Package.Requires}}
+        <div class="info-card">
+            <h3>⚙️ Requirements</h3>
+            <div class="requirements-list">
+                {{range $key, $value := .Package.Requires}}
+                <div class="requirement-item">
+                    <span class="req-key">{{$key}}</span>
+                    <span class="req-value">{{$value}}</span>
+                </div>
+                {{end}}
+            </div>
+        </div>
+        {{end}}
+    </div>
+
+    <div class="action-buttons">
+        <a href="https://{{.Package.Repository}}" target="_blank" class="btn btn-success btn-large">
+            🔗 Xem trên GitHub
+        </a>
+        {{if .Package.Homepage}}
+        <a href="{{.Package.Homepage}}" target="_blank" class="btn btn-primary btn-large">
+            🏠 Homepage
+        </a>
+        {{end}}
+        {{if .Package.Documentation}}
+        <a href="{{.Package.Documentation}}" target="_blank" class="btn btn-secondary btn-large">
+            📚 Documentation
+        </a>
+        {{end}}
+        <a href="/" class="btn btn-outline btn-large">← Về danh sách</a>
+    </div>
+</div>
+{{end}}
