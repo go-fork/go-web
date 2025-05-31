@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="go-import" content="{{ .Package.Path }} git https://{{ .Package.Repository }}">
+        <meta name="go-source" content="{{ .Package.Path }} https://{{ .Package.Repository }} https://{{ .Package.Repository }}/tree/main{/dir} https://{{ .Package.Repository }}/blob/main{/dir}/{file}#L{line}">
+        <meta http-equiv="refresh" content="0; url=https://pkg.go.dev/{{ .Package.Path }}">
+        <title>{{ .Package.Path }} - Go Fork</title>
+        <meta name="description" content="{{ .Package.Description }} - Go Fork module {{ .Package.Path }}">
+        <meta name="keywords" content="Go, Golang, {{ .Package.Path }}, Go module, Go package, Go Fork">
+    </head>
+    <body>
+        Nothing to see here. Please <a href="https://pkg.go.dev/{{ .Package.Path }}">move along</a>.
+    </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ .Title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Go Fork - A collection of high-quality Go packages for building modern applications. Find and use our Go modules easily with go get.">
+    <meta name="keywords" content="Go, Golang, Go modules, Go packages, Go libraries, Go Fork, dependency injection, cache, config, logging, mongodb, redis, scheduler, queue, fork framework">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #0366d6;
+            margin-bottom: 30px;
+        }
+        .package-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 15px;
+        }
+        @media (min-width: 768px) {
+            .package-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .package-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .package-item {
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+            background-color: #f6f8fa;
+            transition: all 0.2s ease;
+        }
+        .package-item:hover {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border-color: #0366d6;
+        }
+        .go-get-row {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: #f1f8ff;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #c8e1ff;
+        }
+        .go-get-row code {
+            color: #032f62;
+            font-size: 14px;
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #586069;
+            padding: 4px 8px;
+            border-radius: 3px;
+        }
+        .copy-btn:hover {
+            background-color: #ddefff;
+            color: #0366d6;
+        }
+        .package-description {
+            color: #24292e;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .package-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .package-link a {
+            color: #0366d6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .package-link a:hover {
+            text-decoration: underline;
+        }
+        .package-link svg {
+            color: #586069;
+        }
+        .external-link {
+            margin-left: 3px;
+        }
+    .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .filter-container {
+            position: relative;
+            max-width: 300px;
+            width: 100%;
+        }
+        .filter-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #586069;
+        }
+        .filter-input {
+            width: 100%;
+            padding: 8px 10px 8px 35px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+        .filter-input:focus {
+            border-color: #0366d6;
+            box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px 0;
+            color: #586069;
+            font-size: 16px;
+            width: 100%;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ .Title }}</h1>
+        <div class="filter-container">
+            <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="filter-input" placeholder="Filter packages..." id="package-filter">
+        </div>
+    </div>
+    
+    <ul class="package-list">
+        {{ range .Packages }}
+        <li class="package-item">
+            <div class="go-get-row">
+                <code>go get {{ .Path }}</code>
+                <button class="copy-btn" data-copy-text="go get {{ .Path }}" title="Copy to clipboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="package-description">{{ .Description }}</div>
+            <div class="package-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <a href="https://{{ .Repository }}" target="_blank">{{ .Repository }}</a>
+                <svg class="external-link" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </div>
+            <div class="package-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                    <line x1="16" y1="8" x2="2" y2="22"></line>
+                    <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                </svg>
+                <a href="https://pkg.go.dev/{{ .Path }}" target="_blank">pkg.go.dev/{{ .Path }}</a>
+                <svg class="external-link" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </div>
+        </li>
+        {{ end }}
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copy button functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const textToCopy = this.getAttribute('data-copy-text');
+                    
+                    navigator.clipboard.writeText(textToCopy)
+                        .then(() => {
+                            const originalHTML = this.innerHTML;
+                            
+                            // Change to checkmark icon
+                            this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                            
+                            // Reset after 2 seconds
+                            setTimeout(() => {
+                                this.innerHTML = originalHTML;
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Could not copy text: ', err);
+                        });
+                });
+            });
+
+            // Package filtering functionality
+            const filterInput = document.getElementById('package-filter');
+            const packageItems = document.querySelectorAll('.package-item');
+            const packageList = document.querySelector('.package-list');
+            let noResultsElement = null;
+
+            filterInput.addEventListener('keyup', function() {
+                const filterValue = this.value.toLowerCase();
+                let visibleCount = 0;
+
+                packageItems.forEach(item => {
+                    // Get text content from all relevant elements in the package item
+                    const packagePath = item.querySelector('.go-get-row code').textContent.toLowerCase();
+                    const packageDescription = item.querySelector('.package-description').textContent.toLowerCase();
+                    const packageRepo = item.querySelector('.package-link a').textContent.toLowerCase();
+
+                    // Check if any of the content includes the filter value
+                    if (packagePath.includes(filterValue) || 
+                        packageDescription.includes(filterValue) || 
+                        packageRepo.includes(filterValue)) {
+                        item.style.display = '';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Handle "no results" message
+                if (visibleCount === 0) {
+                    if (!noResultsElement) {
+                        noResultsElement = document.createElement('li');
+                        noResultsElement.className = 'no-results';
+                        noResultsElement.textContent = 'No packages found matching "' + filterValue + '"';
+                        packageList.appendChild(noResultsElement);
+                    } else {
+                        noResultsElement.textContent = 'No packages found matching "' + filterValue + '"';
+                        noResultsElement.style.display = '';
+                    }
+                } else if (noResultsElement) {
+                    noResultsElement.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

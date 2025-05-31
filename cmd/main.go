@@ -1,41 +1,34 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
 
-	"go.for.vn/go-web/internal/handlers"
-	"go.for.vn/go-web/internal/services"
+	"github.com/go-fork/go-web/internal/handlers"
+	"github.com/go-fork/go-web/internal/services"
 )
 
 func main() {
-	// Create package service
+	// Initialize package service
 	packageService := services.NewPackageService("data/packages.json")
-	if err := packageService.LoadPackages(); err != nil {
-		log.Fatal("Failed to load packages:", err)
-	}
 
-	// Create handlers
-	packageHandler := handlers.NewPackageHandler(packageService)
-	apiHandler := handlers.NewAPIHandler(packageService)
+	// Initialize handlers
+	handler := handlers.NewHandler(packageService)
 
-	// Setup routes
-	http.HandleFunc("/", packageHandler.HandleRoot)
-	http.HandleFunc("/api/", apiHandler.HandleAPI)
+	// Static files - only if public directory exists
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
 
-	// Serve static files directly
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public/static"))))
+	// Routes
+	// Main handler that routes all requests
+	http.HandleFunc("/", handler.RouteRequest)
 
-	// Get port from environment or use default
+	// Get port from environment variable or use default
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "7666"
+		port = "8080"
 	}
 
-	fmt.Printf("🚀 Go Fork Package Registry starting on port %s\n", port)
-	fmt.Printf("📦 Visit http://localhost:%s to see package list\n", port)
-
+	log.Printf("Server starting on :%s", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

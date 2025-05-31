@@ -1,95 +1,76 @@
 {
-    "categories": {
-        "core": {
-            "name": "Core Packages",
-            "description": "Essential packages for Go development",
-            "icon": "🏗️",
-            "color": "#007ACC"
-        },
-        "providers": {
-            "name": "Providers",
-            "description": "Third-party service providers and integrations",
-            "icon": "🔌",
-            "color": "#28A745"
-        },
-        "utilities": {
-            "name": "Utilities",
-            "description": "Helper packages and utilities",
-            "icon": "🛠️",
-            "color": "#FD7E14"
-        },
-        "frameworks": {
-            "name": "Frameworks",
-            "description": "Web frameworks and application scaffolds",
-            "icon": "🚀",
-            "color": "#6F42C1"
-        }
-    },
     "packages": [
         {
-            "name": "di",
             "path": "go.fork.vn/di",
             "repository": "github.com/go-fork/di",
-            "category": "core",
-            "tags": [
-                "core",
-                "dependency-injection",
-                "container",
-                "lifecycle",
-                "autowiring",
-                "ioc"
-            ]
+            "description": "Dependency injection container for Go applications",
+            "display": true
         },
         {
-            "name": "providers/config",
-            "path": "go.fork.vn/providers/config",
-            "repository": "github.com/go-fork/providers",
-            "category": "providers",
-            "is_sub_package": true,
-            "sub_dir": "config",
-            "tags": [
-                "config",
-                "yaml",
-                "json",
-                "environment"
-            ]
+            "path": "go.fork.vn/fork",
+            "repository": "github.com/go-fork/fork",
+            "description": "Core package of the Fork framework",
+            "display": true
         },
         {
-            "name": "providers/log",
-            "path": "go.fork.vn/providers/log",
-            "repository": "github.com/go-fork/providers",
-            "category": "providers",
-            "is_sub_package": true,
-            "sub_dir": "log",
-            "tags": [
-                "log",
-                "logging",
-                "structured"
-            ]
+            "path": "go.fork.vn/config",
+            "repository": "github.com/go-fork/config",
+            "description": "Configuration management for Go applications",
+            "display": true
         },
         {
-            "name": "module-a",
-            "path": "go.fork.vn/tests/module-a",
-            "repository": "github.com/go-fork/go-web",
-            "category": "utilities",
-            "is_sub_package": true,
-            "sub_dir": "tests/module-a",
-            "tags": [
-                "test",
-                "example"
-            ]
+            "path": "go.fork.vn/cache",
+            "repository": "github.com/go-fork/cache",
+            "description": "Fast and flexible caching system for Go",
+            "display": true
         },
         {
-            "name": "module-b",
-            "path": "go.fork.vn/tests/module-b",
-            "repository": "github.com/go-fork/go-web",
-            "category": "utilities",
-            "is_sub_package": true,
-            "sub_dir": "tests/module-b",
-            "tags": [
-                "test",
-                "example"
-            ]
+            "path": "go.fork.vn/log",
+            "repository": "github.com/go-fork/log",
+            "description": "Structured logging for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/redis",
+            "repository": "github.com/go-fork/redis",
+            "description": "Redis client and utilities for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/mongodb",
+            "repository": "github.com/go-fork/mongodb",
+            "description": "MongoDB driver and helpers for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/mailer",
+            "repository": "github.com/go-fork/mailer",
+            "description": "Email sending capabilities for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/sms",
+            "repository": "github.com/go-fork/sms",
+            "description": "SMS messaging integration for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/queue",
+            "repository": "github.com/go-fork/queue",
+            "description": "Message queue implementation for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/scheduler",
+            "repository": "github.com/go-fork/scheduler",
+            "description": "Task scheduling for Go applications",
+            "display": true
+        },
+        {
+            "path": "go.fork.vn/test-hidden",
+            "repository": "github.com/go-fork/test-hidden",
+            "description": "This is a hidden package for testing",
+            "display": false
         }
     ]
 }
